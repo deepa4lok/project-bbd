@@ -16,11 +16,7 @@ class report_project_task_status(osv.osv):
         'stage_id': fields.many2one('project.task.type', 'Stage'),
         'user_id': fields.many2one('res.users', 'Task Owner', readonly=True),
         'login': fields.char('Login', readonly=True),
-        # 'project_id': fields.many2one('project.project', 'Project', readonly=True),
-        # 'company_id': fields.many2one('res.company', 'Company', readonly=True),
-        # 'state': fields.selection([('normal', 'In Progress'),('blocked', 'Blocked'),('done', 'Ready for next stage')],'Status', readonly=True),
     }
-
 
     def _select(self):
         select_str = """ 
@@ -35,7 +31,7 @@ class report_project_task_status(osv.osv):
         (
             select distinct t.user_id
                 , t.stage_id
-              task  , u.login
+                , u.login
             from project_task t
             left outer join res_users u on u.id = t.user_id
             where t.active is true
@@ -44,8 +40,6 @@ class report_project_task_status(osv.osv):
 
         """
         return select_str
-
-
 
 
     def init(self, cr):

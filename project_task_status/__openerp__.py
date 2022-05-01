@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Project Management - BBD',
+    'name': 'Project Task Status',
     'version': '1.1',
     'author': 'Deepa Venkatesh',
     'website': 'https://www.odoo.com/page/project-management',
