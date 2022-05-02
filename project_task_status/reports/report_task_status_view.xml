@@ -10,8 +10,13 @@
             <field name="model">report.project.task.status.lines</field>
             <field name="arch" type="xml">
                 <tree string="Tasks Details">
-                     <field name="user_id" />
+                    <field name="user_id" invisible="1"/>
                     <field name="project_id"/>
+                    <field name="nbr_open"/>
+                    <field name="nbr_open_delay"/>
+                    <field name="nbr_done_month"/>
+                    <field name="nbr_done_lastwk"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                  </tree>
              </field>
         </record>
@@ -59,10 +64,6 @@
                     <separator/>
                     <group expand="0" string="Group By">
                         <filter string="Stage" name="stage" context="{'group_by':'stage_id'}"/>
-<!--                        <filter string="Task Owner" name="user" context="{'group_by':'user_id'}"/>-->
-<!--                        <filter string="Project" name="project" context="{'group_by':'project_id'}"/>-->
-<!--                        <filter string="Status" name="status" context="{'group_by':'state'}"/>-->
-<!--                        <filter string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>-->
                     </group>
                 </search>
             </field>
