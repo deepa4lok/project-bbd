@@ -16,6 +16,7 @@ This modules provides an overview of Task assignments collectively of all projec
 Further it also provides an option to download the report in JSON format.
     """,
     'data': [
+        "views/template.xml",
         "views/project.xml",
         "reports/report_task_status_view.xml"
 
@@ -23,6 +24,9 @@ Further it also provides an option to download the report in JSON format.
     'demo': [],
     'test': [
     ],
+    'qweb': [
+        'static/src/xml/qweb.xml',
+         ],
     'installable': True,
     'auto_install': False,
     'application': False,

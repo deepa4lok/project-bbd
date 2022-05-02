@@ -62,6 +62,9 @@ class report_project_task_status(osv.osv):
         sql = """CREATE or REPLACE VIEW %s as ( %s)""" % (self._table, self._select())
         cr.execute(sql)
 
+    def prepare_json_export(self, cr, uid):
+        return True
+
 
 class report_project_task_status_lines(osv.osv):
     _name = "report.project.task.status.lines"
