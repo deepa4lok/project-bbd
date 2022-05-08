@@ -6,33 +6,27 @@ openerp.project_task_status = function (instance){
     var self = this;
     var RptTaskStatus = new openerp.Model('report.project.task.status');
 
-    openerp.web.ListView.include({
-        load_list: function(data) {
-            this._super(data);
-            if (this.$buttons) {
-                this.$buttons.find('.btn_export_json').off().click(this.proxy('do_action_export_json')) ;
-                console.log('Button found !!...');
-                }
-            },
+    instance.web.ListView.include({
+        load_list: function () {
+            var self = this;
+            var add_button = false;
+            if (!this.$buttons) {
+                add_button = true;
+            }
+            this._super.apply(this, arguments);
+            if(add_button) {
+                this.$buttons.on('click', '.btn_export_json', function() {
+                    new instance.web.Model("report.project.task.status")
+                        .call("prepare_json_export", [])
+                        .then(function (result) {
+                            self.do_action(result);
+                        });
 
-            do_action_export_json: function () {
-                RptTaskStatus.call('prepare_json_export').then(function (result) {
-                    console.log("Called Method !!")
+                    return false;
                 });
+            }
+        }
+    });
 
-//                this.do_action({
-//                    type: "ir.actions.act_window",
-//                    name: 'Export in JSON',
-//                    res_model: 'report.project.task.status',
-//                    view_type: 'form',
-//                    view_mode: 'form',
-//                    target: 'new',
-//                    views: [[false, 'form']],
-//                    flags: {'form': {'action_buttons': true, 'options': {'mode': 'edit'}}}});
-
-                return { 'type': 'ir.actions.client',
-                    'tag': 'reload', } }
-
-        });
 }
 
