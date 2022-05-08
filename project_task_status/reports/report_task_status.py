@@ -36,8 +36,12 @@ class report_project_task_status(osv.osv):
 
 
     def _select(self):
-        select_str = """ 
+        """
+            Query fetching grouped by task owner
+            :returns query structure as required for View.
+        """
 
+        select_str = """ 
         SELECT row_number() OVER () as id
             , s.id as stage_id
             , s.name
@@ -66,6 +70,10 @@ class report_project_task_status(osv.osv):
 
 
     def prepare_json_export(self, cr, uid):
+        """
+            Prepares JSON file for exporting
+            :returns downloadable report link
+        """
 
         rptLine = self.pool.get('report.project.task.status.lines')
 
@@ -112,6 +120,10 @@ class report_project_task_status_lines(osv.osv):
 
 
     def _select(self, forJSON=False):
+        """
+            Query for fetching detailed info about Task status
+            :returns query structure as required either for View or JSON file.
+        """
 
         if forJSON:
             col_str = """             

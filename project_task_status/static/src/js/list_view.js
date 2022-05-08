@@ -1,4 +1,3 @@
-
 openerp.project_task_status = function (instance){
 
     var QWeb = openerp.web.qweb;

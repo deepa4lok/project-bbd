@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
+
+  <!--
+    Button: Export JSON
+   -->
   <t t-extend="ListView.buttons">
         <t t-jquery="div" t-operation="append">
           <t t-if="widget.model=='report.project.task.status'">
